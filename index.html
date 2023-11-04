@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Tic-Tac-Toe</title>
 </head>
 <body>
-    <div class="prompt-game-box">
+    <div class="prompt-conatiner">
+        <div class="prompt-game-box">
+            <button class="yes-game">Yes</button>
+            <button class="no-game">No</button>
+        </div>
 
-    </div>
+        <div class="player-name-box">
+            <form action="post" id="player-form">
+                <label for="player1">First player:</label>
+                <input type="text" id="player1" name="player1">
 
-    <div class="player-name-box">
+                <label for="player2">Second player:</label>
+                <input type="text" id="player2" name="player2">
 
+                <button class="start-game">Start Game!</button>
+            </form>
+        </div>
     </div>
 
     <div class="gameboard">

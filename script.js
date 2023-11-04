@@ -19,6 +19,9 @@
 
 
 // factory function to create Player
-function createPlayer () {
-    
-}
+function createPlayer (name) {
+    const player = name;
+    return function returnPlayer() {
+        return `Your name is ${player}!`
+    };
+};

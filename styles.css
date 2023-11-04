@@ -1,0 +1,19 @@
+/* Make a grid container that provides the structure
+of the gameboard.
+
+*/
+
+body {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.prompt-conatiner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 550px;
+    height: 200px;
+    border: 2px solid black;
+}
