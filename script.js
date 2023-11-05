@@ -18,10 +18,28 @@
 // after one last check for a win
 
 
+
+
 // factory function to create Player
-function createPlayer (name) {
-    const player = name;
-    return function returnPlayer() {
-        return `Your name is ${player}!`
-    };
-};
+const createPlayer = (function () {
+    const player1Name = document.getElementById('player1').value
+    const player2Name = document.getElementById('player2').value
+    const returnPlayer = () => {
+        const player1 = player1Name;
+        const player2 =player2Name;
+        console.log('Player1: ', player1)
+        console.log('Player2: ', player2)
+    }
+
+    return returnPlayer;
+
+})();
+
+
+const test = createPlayer()
+// console.log(test())
+
+
+// const player1 = createPlayer('Ted')
+// console.log(player1())
+// console.log(player1)

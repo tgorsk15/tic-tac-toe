@@ -5,8 +5,8 @@ of the gameboard.
 
 body {
     display: flex;
-    justify-content: center;
-    
+    justify-content: space-evenly;
+
 }
 
 .prompt-conatiner {
@@ -16,4 +16,8 @@ body {
     width: 550px;
     height: 200px;
     border: 2px solid black;
+}
+
+.scoreboard {
+    width: 150px;
 }
