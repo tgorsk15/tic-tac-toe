@@ -19,27 +19,46 @@
 
 
 
-
 // factory function to create Player
-const createPlayer = (function () {
-    const player1Name = document.getElementById('player1').value
-    const player2Name = document.getElementById('player2').value
-    const returnPlayer = () => {
-        const player1 = player1Name;
-        const player2 =player2Name;
-        console.log('Player1: ', player1)
-        console.log('Player2: ', player2)
+const createPlayers = (function () {
+    // const player1Score = document
+    const returnPlayer = (player1Name, player2Name) => {
+        let player1 = player1Name;
+        let player2 = player2Name;
+        console.log(player1)
+        console.log(player2)
+        console.log('Player1: ', player1 )
+        console.log('Player2: ', player2 )
     }
 
-    return returnPlayer;
+    // const returnScore = () => {
+
+    // }
+    console.log('also done')
+    return returnPlayer
 
 })();
 
 
-const test = createPlayer()
-// console.log(test())
+//Event Listener for start game button
+const StartButton = document.querySelector('.start-game')
+StartButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const player1Name = document.getElementById('player1').value
+    const player2Name = document.getElementById('player2').value
+    console.log(player1Name)
+    console.log(player2Name)
+    const game = createPlayers(player1Name, player2Name);
+    console.log('done')
+    
+    // make container dissapear to make way for gameboard
+    
+
+    return game
+})
+
+// const test = createPlayers()
 
 
-// const player1 = createPlayer('Ted')
-// console.log(player1())
-// console.log(player1)
+
+
