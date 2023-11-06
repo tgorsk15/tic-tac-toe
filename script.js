@@ -23,19 +23,18 @@
 const createPlayers = (function () {
     // const player1Score = document
     const returnPlayer = (player1Name, player2Name) => {
-        let player1 = player1Name;
-        let player2 = player2Name;
+        const player1 = player1Name;
+        const player2 = player2Name;
         console.log(player1)
         console.log(player2)
         console.log('Player1: ', player1 )
         console.log('Player2: ', player2 )
-    }
+    };
 
     // const returnScore = () => {
 
     // }
-    console.log('also done')
-    return returnPlayer
+    return returnPlayer;
 
 })();
 
@@ -48,16 +47,15 @@ StartButton.addEventListener('click', (e) => {
     const player2Name = document.getElementById('player2').value
     console.log(player1Name)
     console.log(player2Name)
-    const game = createPlayers(player1Name, player2Name);
+    createPlayers(player1Name, player2Name);
     console.log('done')
     
     // make container dissapear to make way for gameboard
     const promptsContainer = document.querySelector('.prompts-container')
-    // need to fix
-    // promptsContainer.classList.toggle('.hidden')
+
     clearContainer(promptsContainer);
 
-    return game
+    
 })
 
 // const test = createPlayers()
