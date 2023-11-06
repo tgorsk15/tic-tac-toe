@@ -52,12 +52,19 @@ StartButton.addEventListener('click', (e) => {
     console.log('done')
     
     // make container dissapear to make way for gameboard
-    
+    const promptsContainer = document.querySelector('.prompts-container')
+    // need to fix
+    // promptsContainer.classList.toggle('.hidden')
+    clearContainer(promptsContainer);
 
     return game
 })
 
 // const test = createPlayers()
+
+function clearContainer(container) {
+    container.style.display = 'none'
+}
 
 
 
