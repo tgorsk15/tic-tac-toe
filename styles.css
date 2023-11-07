@@ -22,3 +22,15 @@ body {
     width: 150px;
 }
 
+.gameboard {
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 2px solid black;
+}
+
+.box {
+    /* border: 1px solid black; */
+}

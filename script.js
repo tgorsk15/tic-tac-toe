@@ -17,6 +17,17 @@
 // 9, no more items can be added and the game ends in a Draw
 // after one last check for a win
 
+// IIFE for the game board
+const createBoard = (function () {
+    const boardMarks = ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'];
+    const gameBoard = document.querySelector('.gameboard');
+    const boardDivs = gameBoard.getElementsByTagName('div');
+    console.log(boardDivs.textContent)
+    for (let i = 0; i < boardMarks.length; i++) {
+        boardDivs[i].textContent = boardMarks[i];
+    };
+   
+})();
 
 
 // factory function to create Player
@@ -25,8 +36,6 @@ const createPlayers = (function () {
     const returnPlayer = (player1Name, player2Name) => {
         const player1 = player1Name;
         const player2 = player2Name;
-        console.log(player1)
-        console.log(player2)
         console.log('Player1: ', player1 )
         console.log('Player2: ', player2 )
     };
