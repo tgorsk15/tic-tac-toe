@@ -28,9 +28,20 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    gap: 2px solid black;
+    justify-items: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .box {
     /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 2px solid black;
+    height: 66px;
+    width: 66px;
 }
+
+
+
