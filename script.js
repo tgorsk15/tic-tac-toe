@@ -32,11 +32,12 @@ const createBoard = (function () {
 })();
 
 
+const clickBoxes = document.querySelectorAll('.box');
+// console.log(boxesClicked);
+
+
 // factory function for playing a round
-const playRound = function (player1, player2) {
-    console.log(player1);
-    console.log(player2);
-}
+
 
 
 // main game controller function
@@ -63,14 +64,31 @@ function gameController (player1Name, player2Name) {
         if (activePlayer === players[0]) {
             activePlayer = players[1];
         } else if (activePlayer === players[1]) {
-            activePlayer = player[0];
+            activePlayer = players[0];
         } 
         return activePlayer;
     }
-    // switchPlayerTurn()
+
 
     const getActivePlayer = () => console.log(activePlayer);
     getActivePlayer()
+
+    clickBoxes.forEach(box => {
+        box.addEventListener('click', () => {
+            box.style.backgroundColor = 'grey';
+            playRound();
+            console.log('done')
+        })
+    })
+
+
+    //play each round
+    const playRound = function () {
+        console.log(players[0]);
+        console.log(players[1]);
+        switchPlayerTurn();
+        console.log(activePlayer)
+    }
 }
 
 
@@ -81,14 +99,10 @@ startButton.addEventListener('click', (e) => {
     const player1Name = document.getElementById('first-player').value
     const player2Name = document.getElementById('second-player').value
     
-    // const player1 = createPlayer(player1Name, 'X');
-    // const player2 = createPlayer(player2Name, 'O');
+
     gameController(player1Name, player2Name);
 
     console.log('done')
-    
-    // link to playRound function
-    // playRound(player1, player2);
 
     // make container dissapear to make way for gameboard
     const promptsContainer = document.querySelector('.prompts-container')
@@ -98,17 +112,7 @@ startButton.addEventListener('click', (e) => {
     
 })
 
-const clickBoxes = document.querySelectorAll('.box');
-// console.log(boxesClicked);
-clickBoxes.forEach(box => {
-    box.addEventListener('click', () => {
-        box.style.backgroundColor = 'black';
-        playRound(player1, player2);
-        console.log('done')
-    })
-})
 
-// const test = createPlayers()
 
 function clearContainer(container) {
     container.style.display = 'none'
