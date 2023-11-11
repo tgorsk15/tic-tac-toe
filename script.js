@@ -38,13 +38,40 @@ const playRound = function (player1, player2) {
     console.log(player2);
 }
 
-// factory function to create Player
-const createPlayer = function (playerName, symbol) {
-    return {
-        playerName: playerName,
-        symbol: symbol,
+
+// main game controller function
+function gameController (player1Name, player2Name) {
+    // const board = createBoard();
+    // console.log(board)
+
+    const players = [
+        {
+            name: player1Name,
+            symbol: 'X'
+        },
+        {
+            name: player2Name,
+            symbol: 'O'
+        }
+    ];
+    console.log(players);
+
+    let activePlayer = players[0];
+    console.log(activePlayer)
+
+    const switchPlayerTurn = function () {
+        if (activePlayer === players[0]) {
+            activePlayer = players[1];
+        } else if (activePlayer === players[1]) {
+            activePlayer = player[0];
+        } 
+        return activePlayer;
     }
-};
+    // switchPlayerTurn()
+
+    const getActivePlayer = () => console.log(activePlayer);
+    getActivePlayer()
+}
 
 
 //Event Listener for start game button
@@ -54,12 +81,11 @@ startButton.addEventListener('click', (e) => {
     const player1Name = document.getElementById('first-player').value
     const player2Name = document.getElementById('second-player').value
     
-    const player1 = createPlayer(player1Name, 'X');
-    const player2 = createPlayer(player2Name, 'O');
+    // const player1 = createPlayer(player1Name, 'X');
+    // const player2 = createPlayer(player2Name, 'O');
+    gameController(player1Name, player2Name);
 
     console.log('done')
-    console.log(player1);
-    console.log(player2);
     
     // link to playRound function
     // playRound(player1, player2);
@@ -72,11 +98,12 @@ startButton.addEventListener('click', (e) => {
     
 })
 
-const boxesClicked = document.querySelectorAll('.box');
+const clickBoxes = document.querySelectorAll('.box');
 // console.log(boxesClicked);
-boxesClicked.forEach(box => {
+clickBoxes.forEach(box => {
     box.addEventListener('click', () => {
         box.style.backgroundColor = 'black';
+        playRound(player1, player2);
         console.log('done')
     })
 })
