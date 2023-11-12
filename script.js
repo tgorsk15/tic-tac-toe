@@ -19,20 +19,22 @@
 
 
 // IIFE for the game board
-const createBoard = (function () {
-    const boardMarks = [];
-    const gameBoard = document.querySelector('.gameboard');
-    const gameBoxes = gameBoard.getElementsByTagName('div');
-    console.log(gameBoxes)
-    for (let i = 0; i < gameBoxes.length; i++) {
-        boardMarks.push(gameBoxes[i].innerHTML)
-    };
-    console.log(boardMarks)
+function createBoard () {
+    const boardMarks = ["", "", "", "", "", "", "", "", ""];
+    // for (let i = 0; i < gameBoxes.length; i++) {
+    //     boardMarks.push(" ");
+    // };
+    console.log(boardMarks);
+    function changeBoard (index, player) {
+        boardMarks[index = player]
+        console.log(boardMarks)
+    }
+
+    return {changeBoard}
    
-})();
+};
 
 
-const clickBoxes = document.querySelectorAll('.box');
 // console.log(boxesClicked);
 
 
@@ -42,8 +44,8 @@ const clickBoxes = document.querySelectorAll('.box');
 
 // main game controller function
 function gameController (player1Name, player2Name) {
-    // const board = createBoard();
-    // console.log(board)
+    const board = createBoard();
+    console.log(board);
 
     const players = [
         {
@@ -71,14 +73,33 @@ function gameController (player1Name, player2Name) {
 
 
     const getActivePlayer = () => console.log(activePlayer);
-    getActivePlayer()
+   getActivePlayer()
 
+
+    const clickBoxes = document.querySelectorAll('.box');
+    // const gameBoard = document.querySelector('.gameboard');
+    // const gameBoxes = gameBoard.getElementsByTagName('div');
+    // console.log(gameBoxes)
+    const tempBoard = [];
+     for (let i = 0; i < clickBoxes.length; i++) {
+        tempBoard.push(clickBoxes[i]);
+        
+    };
+    console.log(tempBoard)
     clickBoxes.forEach(box => {
-        box.addEventListener('click', () => {
+        box.addEventListener('click', (event) => {
+            console.log(box)
             box.style.backgroundColor = 'grey';
-            playRound();
-            console.log('done')
-        })
+            const indexPosition = tempBoard.indexOf(event.target)
+            console.log(indexPosition)
+            console.log(activePlayer.symbol)
+            const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
+            if (moveResult) {
+                switchPlayerTurn()
+                console.log('completed')
+            }
+            // playRound(box);
+        });
     })
 
 
