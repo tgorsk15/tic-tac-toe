@@ -24,11 +24,12 @@ function createBoard () {
     // for (let i = 0; i < gameBoxes.length; i++) {
     //     boardMarks.push(" ");
     // };
-    console.log(boardMarks);
     function changeBoard (index, player) {
-        boardMarks[index = player]
+        boardMarks[index] = player;
         console.log(boardMarks)
     }
+
+    //maybe put in the checkWin function here??
 
     return {changeBoard}
    
@@ -90,9 +91,9 @@ function gameController (player1Name, player2Name) {
         box.addEventListener('click', (event) => {
             console.log(box)
             box.style.backgroundColor = 'grey';
-            const indexPosition = tempBoard.indexOf(event.target)
-            console.log(indexPosition)
-            console.log(activePlayer.symbol)
+            const indexPosition = tempBoard.indexOf(event.target);
+            console.log(indexPosition);
+            console.log(activePlayer.symbol);
             const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
             if (moveResult) {
                 switchPlayerTurn()
