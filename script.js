@@ -30,6 +30,11 @@ function createBoard () {
     }
 
     //maybe put in the checkWin function here??
+    // ideas: create two separate arrays that are specific to each player
+    // add whatever indexes these players clicked into their specific
+    // array ... this array goes through a loop every time to check 
+    // if it contains any of the winning conditions (which will be another
+    // array)
 
     return {changeBoard}
    
@@ -63,7 +68,7 @@ function gameController (player1Name, player2Name) {
     let activePlayer = players[0];
     console.log(activePlayer)
 
-    const switchPlayerTurn = function () {
+    function switchPlayerTurn() {
         if (activePlayer === players[0]) {
             activePlayer = players[1];
         } else if (activePlayer === players[1]) {
@@ -95,11 +100,10 @@ function gameController (player1Name, player2Name) {
             console.log(indexPosition);
             console.log(activePlayer.symbol);
             const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
-            if (moveResult) {
-                switchPlayerTurn()
-                console.log('completed')
-            }
-            // playRound(box);
+            
+            switchPlayerTurn()
+            console.log(activePlayer);
+    
         });
     })
 
