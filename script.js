@@ -25,14 +25,14 @@ function createBoard () {
     const player2Marks = [];
     
     const winningConditions = [
-        ['0', '1', '2'],
-        ['0', '4', '8'],
-        ['0', '3', '6'],
-        ['1', '4', '7'],
-        ['2', '5', '8'],
-        ['2', '4', '6'],
-        ['3', '4', '5'],
-        ['6', '7', '8']
+        [0, 1, 2],
+        [0, 4, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [2, 4, 6],
+        [3, 4, 5],
+        [6, 7, 8]
     ]
 
 
@@ -56,9 +56,20 @@ function createBoard () {
     // if it contains any of the winning conditions (which will be another
     // array)
 
-    function checkBoardWin () {
+    function checkBoardWin (player) {
         // here both player arrays will be checked to see if they have
         // a winning cobination
+        
+        if (player === 'X') {
+            winningConditions.forEach(array => {
+                console.log(array.every(item => player1Marks.includes(item)));
+            });
+        } else if (player === 'O') {
+            winningConditions.forEach(array => {
+                console.log(array.every(item => player2Marks.includes(item)));
+              });
+        }
+        
     };
 
     return {changeBoard, checkBoardWin}
@@ -126,6 +137,8 @@ function gameController (player1Name, player2Name) {
             const indexPosition = tempBoard.indexOf(event.target);
             console.log(indexPosition);
             const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
+            const checkForWin = board.checkBoardWin(activePlayer.symbol)
+            console.log(checkForWin);
             switchPlayerTurn();
             console.log(activePlayer);
           
