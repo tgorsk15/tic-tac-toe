@@ -21,12 +21,32 @@
 // IIFE for the game board
 function createBoard () {
     const boardMarks = ["", "", "", "", "", "", "", "", ""];
-    // for (let i = 0; i < gameBoxes.length; i++) {
-    //     boardMarks.push(" ");
-    // };
+    const player1Marks = [];
+    const player2Marks = [];
+    
+    const winningConditions = [
+        ['0', '1', '2'],
+        ['0', '4', '8'],
+        ['0', '3', '6'],
+        ['1', '4', '7'],
+        ['2', '5', '8'],
+        ['2', '4', '6'],
+        ['3', '4', '5'],
+        ['6', '7', '8']
+    ]
+
+
     function changeBoard (index, player) {
+        console.log(player)
         boardMarks[index] = player;
         console.log(boardMarks)
+        if (player === 'X') {
+            player1Marks.push(index)
+        } else if (player === 'O') {
+            player2Marks.push(index)
+        }
+        console.log(player1Marks);
+        console.log(player2Marks);
     };
 
     // maybe put in the checkWin function here??
@@ -37,10 +57,11 @@ function createBoard () {
     // array)
 
     function checkBoardWin () {
-
+        // here both player arrays will be checked to see if they have
+        // a winning cobination
     };
 
-    return {changeBoard}
+    return {changeBoard, checkBoardWin}
    
 };
 
@@ -104,7 +125,6 @@ function gameController (player1Name, player2Name) {
             box.style.backgroundColor = 'grey';
             const indexPosition = tempBoard.indexOf(event.target);
             console.log(indexPosition);
-            console.log(activePlayer.symbol);
             const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
             switchPlayerTurn();
             console.log(activePlayer);
