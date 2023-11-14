@@ -27,14 +27,18 @@ function createBoard () {
     function changeBoard (index, player) {
         boardMarks[index] = player;
         console.log(boardMarks)
-    }
+    };
 
-    //maybe put in the checkWin function here??
+    // maybe put in the checkWin function here??
     // ideas: create two separate arrays that are specific to each player
     // add whatever indexes these players clicked into their specific
     // array ... this array goes through a loop every time to check 
     // if it contains any of the winning conditions (which will be another
     // array)
+
+    function checkBoardWin () {
+
+    };
 
     return {changeBoard}
    
@@ -81,17 +85,19 @@ function gameController (player1Name, player2Name) {
     const getActivePlayer = () => console.log(activePlayer);
    getActivePlayer()
 
-
+    // reference sets the groundwork of transfering the player's symbols
+    // to the clicked boxes
     const clickBoxes = document.querySelectorAll('.box');
-    // const gameBoard = document.querySelector('.gameboard');
-    // const gameBoxes = gameBoard.getElementsByTagName('div');
-    // console.log(gameBoxes)
+
     const tempBoard = [];
      for (let i = 0; i < clickBoxes.length; i++) {
         tempBoard.push(clickBoxes[i]);
         
     };
     console.log(tempBoard)
+
+    // const checkWinArray = [];
+
     clickBoxes.forEach(box => {
         box.addEventListener('click', (event) => {
             console.log(box)
@@ -100,9 +106,9 @@ function gameController (player1Name, player2Name) {
             console.log(indexPosition);
             console.log(activePlayer.symbol);
             const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
-            
-            switchPlayerTurn()
+            switchPlayerTurn();
             console.log(activePlayer);
+          
     
         });
     })
