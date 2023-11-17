@@ -59,25 +59,39 @@ function createBoard () {
     function checkBoardWin (player) {
         // here both player arrays will be checked to see if they have
         // a winning cobination
-        
+        let endGameResult = false;
+
         if (player === 'X') {
             winningConditions.forEach(array => {
-                console.log(array.every(item => player1Marks.includes(item)));
+                // looking like I will have to be using another way to loop through the
+                // code, forEach loop can't be broken
+               const player1Check = array.every(item => player1Marks.includes(item));
+               console.log(player1Check)
+               if (player1Check) {
+                endGameResult = true
+                console.log(endGameResult)
+                return
+               }
+
             });
         } else if (player === 'O') {
             winningConditions.forEach(array => {
-                console.log(array.every(item => player2Marks.includes(item)));
-              });
+                const player2Check = array.every(item => player2Marks.includes(item));
+                console.log(player2Check)
+                if (player2Check) {
+                    endGameResult = true
+                    return
+                }
+            });
         }
+
+        return endGameResult
         
     };
 
     return {changeBoard, checkBoardWin}
    
 };
-
-
-// console.log(boxesClicked);
 
 
 // factory function for playing a round
@@ -128,7 +142,6 @@ function gameController (player1Name, player2Name) {
     };
     console.log(tempBoard)
 
-    // const checkWinArray = [];
 
     clickBoxes.forEach(box => {
         box.addEventListener('click', (event) => {
@@ -138,7 +151,9 @@ function gameController (player1Name, player2Name) {
             console.log(indexPosition);
             const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
             const checkForWin = board.checkBoardWin(activePlayer.symbol)
-            console.log(checkForWin);
+            
+            // console.log(checkForWin.player1Check);
+            // console.log(checkForWin.player2Check);
             switchPlayerTurn();
             console.log(activePlayer);
           
