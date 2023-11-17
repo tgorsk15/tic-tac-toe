@@ -21,6 +21,7 @@
 // factory function for the game board
 function createBoard () {
     const boardMarks = ["", "", "", "", "", "", "", "", ""];
+    const clickBoxes = document.querySelectorAll('.box');
     const player1Marks = [];
     const player2Marks = [];
     
@@ -89,12 +90,24 @@ function createBoard () {
         
     };
 
-    return {changeBoard, checkBoardWin}
+
+    function clearBoard () {
+        player1Marks.length = 0;
+        player2Marks.length = 0;
+
+        console.log(player1Marks)
+        console.log(player2Marks)
+
+        
+
+        return {player1Marks, player2Marks}
+    }
+
+    return {changeBoard, checkBoardWin, clearBoard}
    
 };
 
 
-// factory function for playing a round
 
 
 
@@ -156,6 +169,9 @@ function gameController (player1Name, player2Name) {
             // the gameboard dissapear and declare a winner, whil also resetting all
             // arrays and game functions
             if (checkForWin) {
+                clickBoxes.forEach(box => {
+                    box.disabled = true
+                });
                 endGame()
             };
 
@@ -168,12 +184,12 @@ function gameController (player1Name, player2Name) {
     })
 
 
-    //play each round
     const endGame = function () {
         // Here, all arrays should reset
         // a winner should be declared in a new game status box
-        
-        console.log('end reached')
+        const clearPlayers = board.clearBoard();
+        console.log(clearPlayers);
+        console.log('end reached');
     }
 }
 
