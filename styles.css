@@ -2,8 +2,12 @@
 of the gameboard.
 
 */
+html {
+    min-height: 100%;
+}
 
 body {
+    min-height: 100vh;
     display: flex;
     justify-content: space-evenly;
 
@@ -41,6 +45,18 @@ body {
     outline: 2px solid black;
     height: 66px;
     width: 66px;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 100%;
+}
+
+.status-box {
+    text-align: center;
+    border: 2px dashed black;
 }
 
 
