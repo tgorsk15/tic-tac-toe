@@ -18,7 +18,7 @@
 // after one last check for a win
 
 
-// IIFE for the game board
+// factory function for the game board
 function createBoard () {
     const boardMarks = ["", "", "", "", "", "", "", "", ""];
     const player1Marks = [];
@@ -62,29 +62,29 @@ function createBoard () {
         let endGameResult = false;
 
         if (player === 'X') {
-            winningConditions.forEach(array => {
+            for (let array of winningConditions) {
                 // looking like I will have to be using another way to loop through the
                 // code, forEach loop can't be broken
                const player1Check = array.every(item => player1Marks.includes(item));
                console.log(player1Check)
                if (player1Check) {
-                endGameResult = true
-                console.log(endGameResult)
-                return
+                console.log('ran')
+                    endGameResult = true
+                    break
                }
 
-            });
+            };
         } else if (player === 'O') {
-            winningConditions.forEach(array => {
+            for (let array of winningConditions) {
                 const player2Check = array.every(item => player2Marks.includes(item));
                 console.log(player2Check)
                 if (player2Check) {
                     endGameResult = true
-                    return
+                    break
                 }
-            });
+            };
         }
-
+        console.log(endGameResult)
         return endGameResult
         
     };
@@ -145,15 +145,21 @@ function gameController (player1Name, player2Name) {
 
     clickBoxes.forEach(box => {
         box.addEventListener('click', (event) => {
-            console.log(box)
+            
             box.style.backgroundColor = 'grey';
             const indexPosition = tempBoard.indexOf(event.target);
-            console.log(indexPosition);
+           
             const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
             const checkForWin = board.checkBoardWin(activePlayer.symbol)
-            
-            // console.log(checkForWin.player1Check);
-            // console.log(checkForWin.player2Check);
+            console.log(checkForWin);
+            // If checkBoardWin comes back as true from checkForWin, I want to make
+            // the gameboard dissapear and declare a winner, whil also resetting all
+            // arrays and game functions
+            if (checkForWin) {
+                endGame()
+            };
+
+        
             switchPlayerTurn();
             console.log(activePlayer);
           
@@ -163,11 +169,11 @@ function gameController (player1Name, player2Name) {
 
 
     //play each round
-    const playRound = function () {
-        console.log(players[0]);
-        console.log(players[1]);
-        switchPlayerTurn();
-        console.log(activePlayer)
+    const endGame = function () {
+        // Here, all arrays should reset
+        // a winner should be declared in a new game status box
+        
+        console.log('end reached')
     }
 }
 
