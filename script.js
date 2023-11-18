@@ -64,8 +64,6 @@ function createBoard () {
 
         if (player === 'X') {
             for (let array of winningConditions) {
-                // looking like I will have to be using another way to loop through the
-                // code, forEach loop can't be broken
                const player1Check = array.every(item => player1Marks.includes(item));
                console.log(player1Check)
                if (player1Check) {
@@ -161,6 +159,10 @@ function gameController (player1Name, player2Name) {
 
     clickBoxes.forEach(box => {
         box.addEventListener('click', boxClickEvent)
+        // possibly write checkDraw function here
+        // if all boxes have disabled-box class, call a draw
+        // maybe write another forEach loop to check
+        
     });
 
     function boxClickEvent(event) {
@@ -182,7 +184,6 @@ function gameController (player1Name, player2Name) {
         // the gameboard dissapear and declare a winner, whil also resetting all
         // arrays and game functions
         if (checkForWin) {
-            disabledBoard = true;
             endGame()
         };
     
@@ -202,8 +203,6 @@ function gameController (player1Name, player2Name) {
         // Here, all arrays should reset
         // a winner should be declared in a new game status box
         const clearPlayers = board.clearBoard();
-
-        // problem - this is not being read by outer scope:
         disabledBoard = true;
 
         console.log(disabledBoard)
