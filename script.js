@@ -159,11 +159,16 @@ function gameController (player1Name, player2Name) {
 
     clickBoxes.forEach(box => {
         box.addEventListener('click', boxClickEvent)
-        // possibly write checkDraw function here
+        // possibly write callkDraw function here
         // if all boxes have disabled-box class, call a draw
         // maybe write another forEach loop to check
-        
+
+        // ... current: create an if statement that checks if this
+        // is true each time the eventListener is triggered
+
     });
+
+    
 
     function boxClickEvent(event) {
         console.log(disabledBoard)
@@ -180,18 +185,26 @@ function gameController (player1Name, player2Name) {
         const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
         const checkForWin = board.checkBoardWin(activePlayer.symbol)
         console.log(checkForWin);
+
+        box.classList.add('disabled-box');
+        const disabledBoxes = document.querySelectorAll(".disabled-box");
         // If checkBoardWin comes back as true from checkForWin, I want to make
         // the gameboard dissapear and declare a winner, whil also resetting all
         // arrays and game functions
         if (checkForWin) {
             endGame()
         };
+
+        // put in if statment here to check if there's a draw:
+        if (clickBoxes.length === disabledBoxes.length) {
+            console.log('tis a draw')
+        };
+
     
         switchPlayerTurn();
         console.log(activePlayer);
 
         // ensures that player cannot select box again
-        box.classList.add('disabled-box');
     
         
     };
