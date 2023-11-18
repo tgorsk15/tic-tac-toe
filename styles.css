@@ -61,7 +61,7 @@ body {
 
 .disabled-box {
     pointer-events: none;
-    background-color: red;
+    color: red;
 }
 
 

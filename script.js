@@ -182,17 +182,15 @@ function gameController (player1Name, player2Name) {
         // the gameboard dissapear and declare a winner, whil also resetting all
         // arrays and game functions
         if (checkForWin) {
-            // clickBoxes.forEach(box => {
-            //     box.disabled = true
-            // });
-
             disabledBoard = true;
             endGame()
         };
-
     
         switchPlayerTurn();
         console.log(activePlayer);
+
+        // ensures that player cannot select box again
+        box.classList.add('disabled-box');
     
         
     };
