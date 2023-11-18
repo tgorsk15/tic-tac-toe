@@ -116,6 +116,9 @@ function gameController (player1Name, player2Name) {
     const board = createBoard();
     console.log(board);
 
+    let disabledBoard = false;
+    console.log(disabledBoard)
+
     const players = [
         {
             name: player1Name,
@@ -157,40 +160,60 @@ function gameController (player1Name, player2Name) {
 
 
     clickBoxes.forEach(box => {
-        box.addEventListener('click', (event) => {
-            
-            box.style.backgroundColor = 'grey';
-            const indexPosition = tempBoard.indexOf(event.target);
-           
-            const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
-            const checkForWin = board.checkBoardWin(activePlayer.symbol)
-            console.log(checkForWin);
-            // If checkBoardWin comes back as true from checkForWin, I want to make
-            // the gameboard dissapear and declare a winner, whil also resetting all
-            // arrays and game functions
-            if (checkForWin) {
-                clickBoxes.forEach(box => {
-                    box.disabled = true
-                });
-                endGame()
-            };
+        box.addEventListener('click', boxClickEvent)
+    });
 
-        
-            switchPlayerTurn();
-            console.log(activePlayer);
-          
+    function boxClickEvent(event) {
+        console.log(disabledBoard)
+        if (disabledBoard === true) {
+            // box.classList.add('disabled-box')
+            return
+
+        } 
+            
+        const box = event.target;
+        box.style.backgroundColor = 'grey';
+        const indexPosition = tempBoard.indexOf(event.target);
     
-        });
-    })
+        const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
+        const checkForWin = board.checkBoardWin(activePlayer.symbol)
+        console.log(checkForWin);
+        // If checkBoardWin comes back as true from checkForWin, I want to make
+        // the gameboard dissapear and declare a winner, whil also resetting all
+        // arrays and game functions
+        if (checkForWin) {
+            // clickBoxes.forEach(box => {
+            //     box.disabled = true
+            // });
+
+            disabledBoard = true;
+            endGame()
+        };
+
+    
+        switchPlayerTurn();
+        console.log(activePlayer);
+    
+        
+    };
+        
+    
 
 
     const endGame = function () {
         // Here, all arrays should reset
         // a winner should be declared in a new game status box
         const clearPlayers = board.clearBoard();
+
+        // problem - this is not being read by outer scope:
+        disabledBoard = true;
+
+        console.log(disabledBoard)
         console.log(clearPlayers);
         console.log('end reached');
+        return disabledBoard
     }
+    console.log(disabledBoard)
 }
 
 

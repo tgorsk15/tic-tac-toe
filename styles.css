@@ -59,5 +59,10 @@ body {
     border: 2px dashed black;
 }
 
+.disabled-box {
+    pointer-events: none;
+    background-color: red;
+}
+
 
 
