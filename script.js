@@ -159,12 +159,6 @@ function gameController (player1Name, player2Name) {
 
     clickBoxes.forEach(box => {
         box.addEventListener('click', boxClickEvent)
-        // possibly write callkDraw function here
-        // if all boxes have disabled-box class, call a draw
-        // maybe write another forEach loop to check
-
-        // ... current: create an if statement that checks if this
-        // is true each time the eventListener is triggered
 
     });
 
@@ -195,9 +189,14 @@ function gameController (player1Name, player2Name) {
             endGame()
         };
 
-        // put in if statment here to check if there's a draw:
+        // if statment here to check if there's a draw
+        // if all boxes are clicked and have the disabled
+        // class, a draw will be triggered
         if (clickBoxes.length === disabledBoxes.length) {
             console.log('tis a draw')
+            // draw function should possibly have a CSS trigger
+            // that causes the "Play Again" button to enlarge and light up
+
         };
 
     
