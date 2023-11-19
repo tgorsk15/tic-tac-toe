@@ -261,9 +261,10 @@ function clearContainer(container) {
 }
 
 
-// function statusBoxController() {
-//     const statusBox = 
-// }
+function statusBoxController() {
+    const statusBox = document.querySelector('.status-box')
+    statusBox.textContent = 'status box working'
+}
 
 
 
