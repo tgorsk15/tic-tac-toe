@@ -20,7 +20,6 @@
 
 // factory function for the game board
 function createBoard () {
-    const boardMarks = ["", "", "", "", "", "", "", "", ""];
     const player1Marks = [];
     const player2Marks = [];
     
@@ -38,8 +37,6 @@ function createBoard () {
 
     function changeBoard (index, player, box) {
         console.log(player)
-        boardMarks[index] = player;
-        console.log(boardMarks);
         if (player === 'X') {
             player1Marks.push(index);
             box.textContent = player;
@@ -97,15 +94,12 @@ function createBoard () {
         console.log(player1Marks)
         console.log(player2Marks)
 
-        
-
         return {player1Marks, player2Marks}
     }
 
     return {changeBoard, checkBoardWin, clearBoard}
    
 };
-
 
 
 
@@ -131,6 +125,8 @@ function gameController (player1Name, player2Name) {
     ];
     console.log(players);
 
+    // set the variable that will allow players to switch between
+    // each other
     let activePlayer = players[0];
     console.log(activePlayer)
 
@@ -145,8 +141,7 @@ function gameController (player1Name, player2Name) {
     }
 
 
-    // reference sets the groundwork of transfering the player's symbols
-    // to the clicked boxes
+    // reference sets the groundwork of eventListeners for each box clicked
     const clickBoxes = document.querySelectorAll('.box');
 
     const tempBoard = [];
@@ -250,12 +245,13 @@ startButton.addEventListener('click', (e) => {
 
     gameController(player1Name, player2Name);
 
-    console.log('done')
-
     // make container dissapear to make way for gameboard
-    const promptsContainer = document.querySelector('.prompts-container')
-
+    const promptsContainer = document.querySelector('.prompts-container');
     clearContainer(promptsContainer);
+
+    const gameContainer = document.querySelector('.game-container');
+    const gameControls = document.querySelector('.game-controls');
+    gameVisible(gameContainer, gameControls);
 
     
 })
@@ -264,6 +260,12 @@ startButton.addEventListener('click', (e) => {
 
 function clearContainer(container) {
     container.style.display = 'none'
+}
+
+function gameVisible(container, control) {
+    container.style.display = 'flex';
+    control.style.display = 'grid'
+
 }
 
 

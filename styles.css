@@ -23,7 +23,10 @@ body {
 }
 
 .game-controls {
-    width: 150px;
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    width: 200px;
+    height: 100px;
 }
 
 .gameboard {
@@ -48,7 +51,7 @@ body {
 }
 
 .game-container {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-evenly;
     min-height: 100%;
