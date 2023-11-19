@@ -138,7 +138,8 @@ function gameController (player1Name, player2Name) {
             activePlayer = players[1];
         } else if (activePlayer === players[1]) {
             activePlayer = players[0];
-        } 
+        }
+        statusBoxController.readTurn(activePlayer.name); 
         return activePlayer;
     }
 
@@ -168,7 +169,6 @@ function gameController (player1Name, player2Name) {
     function boxClickEvent(event) {
         console.log(disabledBoard)
         if (disabledBoard === true) {
-            // box.classList.add('disabled-box')
             return
 
         } 
@@ -188,6 +188,7 @@ function gameController (player1Name, player2Name) {
         // arrays and game functions
         if (checkForWin) {
             endGame()
+            return
         };
 
         // if statment here to check if there's a draw
@@ -196,6 +197,7 @@ function gameController (player1Name, player2Name) {
         if (clickBoxes.length === disabledBoxes.length) {
             console.log('tis a draw')
             drawGame()
+            return
             // draw function should possibly have a CSS trigger
             // that causes the "Play Again" button to enlarge and light up
 
@@ -266,17 +268,18 @@ const statusBoxController = (function () {
     const statusBox = document.querySelector('.status-box');
     statusBox.textContent = 'status box working';
 
-    function readTurn () {
-        
-    }
+    function readTurn (activePlayer) {
+        console.log('trun has been read')
+        statusBox.textContent = `It is ${activePlayer}'s turn!`;
+    };
 
     function declareWinner () {
 
-    }
+    };
 
     function declareDraw () {
 
-    }
+    };
 
     return {readTurn, declareWinner, declareDraw}
 })();
