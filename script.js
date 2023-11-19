@@ -144,9 +144,6 @@ function gameController (player1Name, player2Name) {
     }
 
 
-    const getActivePlayer = () => console.log(activePlayer);
-   getActivePlayer()
-
     // reference sets the groundwork of transfering the player's symbols
     // to the clicked boxes
     const clickBoxes = document.querySelectorAll('.box');
@@ -187,11 +184,13 @@ function gameController (player1Name, player2Name) {
         // the gameboard dissapear and declare a winner, whil also resetting all
         // arrays and game functions
         if (checkForWin) {
-            endGame()
+            endGame(activePlayer.name)
+
+            // prevents the rest of code block from running
+            // no (switchPlayer occurs):
             return
         };
 
-        // if statment here to check if there's a draw
         // if all boxes are clicked and have the disabled
         // class, a draw will be triggered
         if (clickBoxes.length === disabledBoxes.length) {
@@ -215,23 +214,26 @@ function gameController (player1Name, player2Name) {
     
 
 
-    const endGame = function () {
+    const endGame = function (winningPlayer) {
         // Here, all arrays should reset
         // a winner should be declared in a new game status box
         const clearPlayers = board.clearBoard();
         disabledBoard = true;
         activePlayer = ''
+        console.log(winningPlayer);
+        statusBoxController.declareWinner(winningPlayer);
 
-        console.log(disabledBoard)
+        console.log(disabledBoard);
         console.log(clearPlayers);
         console.log('end reached');
         return {disabledBoard, activePlayer}
-    }
+    };
 
     const drawGame = function () {
         board.clearBoard();
-        activePlayer = ''
-    }
+        activePlayer = '';
+        statusBoxController.declareDraw();
+    };
 
     console.log(disabledBoard)
 }
@@ -273,12 +275,15 @@ const statusBoxController = (function () {
         statusBox.textContent = `It is ${activePlayer}'s turn!`;
     };
 
-    function declareWinner () {
-
+    function declareWinner (winner) {
+        console.log('a player has won');
+        statusBox.textContent = `${winner} has won the game !!!`
     };
 
     function declareDraw () {
-
+        console.log('both players meet failure')
+        statusBox.textContent = `All boxes have been filled, 
+        the game has ended in a draw.`
     };
 
     return {readTurn, declareWinner, declareDraw}
