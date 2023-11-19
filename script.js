@@ -113,6 +113,7 @@ function createBoard () {
 function gameController (player1Name, player2Name) {
     const board = createBoard();
     console.log(board);
+    console.log(statusBoxController)
 
     let disabledBoard = false;
     console.log(disabledBoard)
@@ -261,10 +262,24 @@ function clearContainer(container) {
 }
 
 
-function statusBoxController() {
-    const statusBox = document.querySelector('.status-box')
-    statusBox.textContent = 'status box working'
-}
+const statusBoxController = (function () {
+    const statusBox = document.querySelector('.status-box');
+    statusBox.textContent = 'status box working';
+
+    function readTurn () {
+        
+    }
+
+    function declareWinner () {
+
+    }
+
+    function declareDraw () {
+
+    }
+
+    return {readTurn, declareWinner, declareDraw}
+})();
 
 
 
