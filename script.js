@@ -194,6 +194,7 @@ function gameController (player1Name, player2Name) {
         // class, a draw will be triggered
         if (clickBoxes.length === disabledBoxes.length) {
             console.log('tis a draw')
+            drawGame()
             // draw function should possibly have a CSS trigger
             // that causes the "Play Again" button to enlarge and light up
 
@@ -216,12 +217,19 @@ function gameController (player1Name, player2Name) {
         // a winner should be declared in a new game status box
         const clearPlayers = board.clearBoard();
         disabledBoard = true;
+        activePlayer = ''
 
         console.log(disabledBoard)
         console.log(clearPlayers);
         console.log('end reached');
-        return disabledBoard
+        return {disabledBoard, activePlayer}
     }
+
+    const drawGame = function () {
+        board.clearBoard();
+        activePlayer = ''
+    }
+
     console.log(disabledBoard)
 }
 
@@ -252,6 +260,10 @@ function clearContainer(container) {
     container.style.display = 'none'
 }
 
+
+// function statusBoxController() {
+//     const statusBox = 
+// }
 
 
 
