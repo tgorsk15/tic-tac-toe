@@ -21,7 +21,6 @@
 // factory function for the game board
 function createBoard () {
     const boardMarks = ["", "", "", "", "", "", "", "", ""];
-    const clickBoxes = document.querySelectorAll('.box');
     const player1Marks = [];
     const player2Marks = [];
     
@@ -37,14 +36,16 @@ function createBoard () {
     ]
 
 
-    function changeBoard (index, player) {
+    function changeBoard (index, player, box) {
         console.log(player)
         boardMarks[index] = player;
-        console.log(boardMarks)
+        console.log(boardMarks);
         if (player === 'X') {
-            player1Marks.push(index)
+            player1Marks.push(index);
+            box.textContent = player;
         } else if (player === 'O') {
-            player2Marks.push(index)
+            player2Marks.push(index);
+            box.textContent = player;
         }
         console.log(player1Marks);
         console.log(player2Marks);
@@ -174,7 +175,7 @@ function gameController (player1Name, player2Name) {
         box.style.backgroundColor = 'grey';
         const indexPosition = tempBoard.indexOf(event.target);
     
-        const moveResult = board.changeBoard(indexPosition, activePlayer.symbol)
+        const moveResult = board.changeBoard(indexPosition, activePlayer.symbol, box)
         const checkForWin = board.checkBoardWin(activePlayer.symbol)
         console.log(checkForWin);
 
