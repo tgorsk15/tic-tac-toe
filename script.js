@@ -32,7 +32,7 @@ function createBoard () {
         [2, 4, 6],
         [3, 4, 5],
         [6, 7, 8]
-    ]
+    ];
 
 
     function changeBoard (index, player, box) {
@@ -303,6 +303,11 @@ const statusBoxController = (function () {
 
     return {readTurn, declareWinner, declareDraw}
 })();
+
+const boardControl = function () {
+    let player1score = 0;
+    let player2score = 0;
+}
 
 
 
