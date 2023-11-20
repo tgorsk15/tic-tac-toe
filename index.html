@@ -10,17 +10,18 @@
 <body>
     <div class="prompts-container">
         <div class="prompt-game-box">
+            <div class="initial-question">Want to Play Tic-Tac-Toe?</div>
             <button class="yes-game">Yes</button>
-            <button class="no-game">No</button>
+            <!-- <button class="no-game">No</button> -->
         </div>
 
-        <div class="player-name-box">
+        <div class="player-names-box">
             <form action="post" id="player-form">
                 <label for="first-player">First player:</label>
-                <input type="text" id="first-player" name="first-player" placeholder="test">
+                <input type="text" id="first-player" name="first-player" required>
 
                 <label for="second-player">Second player:</label>
-                <input type="text" id="second-player" name="second-player">
+                <input type="text" id="second-player" name="second-player" required>
 
                 <button class="start-game">Start Game!</button>
             </form>
@@ -29,15 +30,15 @@
 
     <div class="game-container">
         <div class="gameboard">
-            <div class="box" id="box1">0</div>
-            <div class="box" id="box2">1</div>
-            <div class="box" id="box3">2</div>
-            <div class="box" id="box4">3</div>
-            <div class="box" id="box5">4</div>
-            <div class="box" id="box6">5</div>
-            <div class="box" id="box7">6</div>
-            <div class="box" id="box8">7</div>
-            <div class="box" id="box9">8</div>
+            <div class="box" id="box1"></div>
+            <div class="box" id="box2"></div>
+            <div class="box" id="box3"></div>
+            <div class="box" id="box4"></div>
+            <div class="box" id="box5"></div>
+            <div class="box" id="box6"></div>
+            <div class="box" id="box7"></div>
+            <div class="box" id="box8"></div>
+            <div class="box" id="box9"></div>
         </div>
 
         <div class="status-box">

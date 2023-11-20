@@ -235,6 +235,10 @@ function gameController (player1Name, player2Name) {
 }
 
 
+const gameButton = document.querySelector('.yes-game');
+
+
+
 //Event Listener for start game button
 const startButton = document.querySelector('.start-game')
 startButton.addEventListener('click', (e) => {
@@ -253,7 +257,6 @@ startButton.addEventListener('click', (e) => {
     const gameControls = document.querySelector('.game-controls');
     gameVisible(gameContainer, gameControls);
 
-    
 })
 
 
