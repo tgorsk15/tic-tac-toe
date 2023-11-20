@@ -10,19 +10,21 @@
 <body>
     <div class="prompts-container">
         <div class="prompt-game-box">
-            <div class="initial-question">Want to Play Tic-Tac-Toe?</div>
+            <div class="initial-question">Are you ready Play Tic-Tac-Toe?</div>
             <button class="yes-game">Yes</button>
             <!-- <button class="no-game">No</button> -->
         </div>
 
         <div class="player-names-box">
             <form action="post" id="player-form">
-                <label for="first-player">First player:</label>
-                <input type="text" id="first-player" name="first-player" required>
-
-                <label for="second-player">Second player:</label>
-                <input type="text" id="second-player" name="second-player" required>
-
+                <div class="player1-question">
+                    <label for="first-player">First player:</label>
+                    <input type="text" id="first-player" name="first-player" required>
+                </div>
+                <div class="player2-question">
+                    <label for="second-player">Second player:</label>
+                    <input type="text" id="second-player" name="second-player" required>
+                </div>
                 <button class="start-game">Start Game!</button>
             </form>
         </div>

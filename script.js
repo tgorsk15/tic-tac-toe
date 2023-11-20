@@ -236,7 +236,11 @@ function gameController (player1Name, player2Name) {
 
 
 const gameButton = document.querySelector('.yes-game');
-
+gameButton.addEventListener('click', () => {
+    const firstPrompt = document.querySelector('.prompt-game-box')
+    const promptPlayers = document.querySelector('.player-names-box');
+    switchBoxes(promptPlayers, firstPrompt);
+})
 
 
 //Event Listener for start game button
@@ -257,7 +261,7 @@ startButton.addEventListener('click', (e) => {
     const gameControls = document.querySelector('.game-controls');
     gameVisible(gameContainer, gameControls);
 
-})
+});
 
 
 
@@ -269,6 +273,11 @@ function gameVisible(container, control) {
     container.style.display = 'flex';
     control.style.display = 'grid'
 
+}
+
+function switchBoxes(playerBox, firstPrompt) {
+    playerBox.style.display = 'block'
+    firstPrompt.style.display = 'none'
 }
 
 
