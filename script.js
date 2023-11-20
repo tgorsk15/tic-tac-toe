@@ -123,6 +123,8 @@ function gameController (player1Name, player2Name) {
             symbol: 'O'
         }
     ];
+
+    boardController.updateScoreBoard(players[0].name, players[1].name)
     console.log(players);
 
     // set the variable that will allow players to switch between
@@ -213,6 +215,7 @@ function gameController (player1Name, player2Name) {
     const endGame = function (winningPlayer) {
         // Here, all arrays should reset
         // a winner should be declared in a new game status box
+        boardController.addPoint(winningPlayer, players[0].name, players[1].name);
         const clearPlayers = board.clearBoard();
         disabledBoard = true;
         activePlayer = ''
@@ -280,7 +283,8 @@ function switchBoxes(playerBox, firstPrompt) {
     firstPrompt.style.display = 'none'
 }
 
-
+// factory function responsible for updating the status box below the
+// game Board
 const statusBoxController = (function () {
     const statusBox = document.querySelector('.status-box');
     statusBox.textContent = 'status box working';
@@ -304,10 +308,34 @@ const statusBoxController = (function () {
     return {readTurn, declareWinner, declareDraw}
 })();
 
-const boardControl = function () {
-    let player1score = 0;
-    let player2score = 0;
-}
+
+// factory function responsible for operating the game Control board
+// in the corner
+const boardController = (function () {
+    const player1Board = document.querySelector('.player1-score')
+    const player2Board = document.querySelector('.player2-score')
+
+    let player1Score = 0;
+    let player2Score = 0;
+
+    function addPoint (winningPlayer, player1, player2) {
+        if (player1 === winningPlayer) {
+            player1Score++
+        } else if (player2 === winningPlayer) {
+            player2Score++
+        };
+        updateScoreBoard(player1, player2);
+        return {player1Score, player2Score}
+    }
+
+    function updateScoreBoard (player1, player2) {
+        console.log('it ran');
+        player1Board.textContent = `${player1}'s score: ${player1Score}`;
+        player2Board.textContent = `${player2}'s score: ${player2Score}`;
+    }
+
+    return {addPoint, updateScoreBoard}
+})();
 
 
 
