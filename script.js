@@ -209,7 +209,6 @@ function gameController (player1Name, player2Name) {
         
     };
         
-    
 
 
     const endGame = function (winningPlayer) {
@@ -234,8 +233,26 @@ function gameController (player1Name, player2Name) {
         statusBoxController.declareDraw();
     };
 
-    console.log(disabledBoard)
+    console.log(disabledBoard);
+
+
+    // this chunk of code will control the reset process if the reset
+    // button is clicked
+    const resetButton = document.querySelector('.reset-game');
+    resetButton.addEventListener('click', () => {
+        board.clearBoard();
+        activePlayer = '';
+        boardController.clearScores(players[0].name, players[1].name);
+        gameController(players[0].name, players[1].name);
+        statusBoxController.resetTurn(players[0].name);
+
+        // it is not updating board and turning it back to default look
+        // will need to figure out:
+
+    });
 }
+
+
 
 
 const gameButton = document.querySelector('.yes-game');
@@ -268,12 +285,12 @@ startButton.addEventListener('click', (e) => {
 
 
 
-function clearContainer(container) {
-    container.style.display = 'none'
+function clearContainer(gameContainer) {
+    gameContainer.style.display = 'none'
 }
 
-function gameVisible(container, control) {
-    container.style.display = 'flex';
+function gameVisible(gameContainer, control) {
+    gameContainer.style.display = 'flex';
     control.style.display = 'grid'
 
 }
@@ -305,7 +322,12 @@ const statusBoxController = (function () {
         the game has ended in a draw.`
     };
 
-    return {readTurn, declareWinner, declareDraw}
+    function resetTurn (currentPlayer) {
+        console.log('game has reset to first player turn')
+        statusBox.textContent = `It is ${currentPlayer}'s turn!`
+    }
+
+    return {readTurn, declareWinner, declareDraw, resetTurn}
 })();
 
 
@@ -334,7 +356,13 @@ const boardController = (function () {
         player2Board.textContent = `${player2}'s score: ${player2Score}`;
     }
 
-    return {addPoint, updateScoreBoard}
+    function clearScores (player1, player2) {
+        player1Score = 0;
+        player2Score = 0;
+        updateScoreBoard(player1, player2);
+    }
+
+    return {addPoint, updateScoreBoard, clearScores}
 })();
 
 
