@@ -250,18 +250,17 @@ function gameController (player1Name, player2Name) {
     // button is clicked
     const resetButton = document.querySelector('.reset-game');
     resetButton.addEventListener('click', () => {
+        // this allows the board to be reset:
         gameIsOver = false
+
         board.clearBoard(clickBoxes, gameIsOver);
-        activePlayer = '';
+        // activePlayer = '';
 
         boardController.clearScores(players[0].name, players[1].name);
         gameController(players[0].name, players[1].name);
         statusBoxController.resetTurn(players[0].name);
 
         disabledBoard = false;
-        // it is not updating board and turning it back to default look
-        // will need to figure out:
-
 
     });
 }
@@ -374,7 +373,8 @@ const boardController = (function () {
         player1Score = 0;
         player2Score = 0;
         updateScoreBoard(player1, player2);
-    }
+        return {player1Score, player2Score};
+    };
 
     return {addPoint, updateScoreBoard, clearScores}
 })();
