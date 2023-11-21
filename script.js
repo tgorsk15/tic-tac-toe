@@ -112,10 +112,12 @@ function createBoard () {
 
 
 // main game controller function
-function gameController (player1Name, player2Name) {
+function gameController (player1Name, player2Name, reset) {
     const board = createBoard();
     console.log(board);
     console.log(statusBoxController)
+
+
 
     let disabledBoard = false;
     console.log(disabledBoard)
@@ -132,6 +134,12 @@ function gameController (player1Name, player2Name) {
             symbol: 'O'
         }
     ];
+
+    if (reset === true) {
+        boardController.clearScores(players[0].name, players[1].name)
+    }
+
+    reset = false;
 
     boardController.updateScoreBoard(players[0].name, players[1].name)
     console.log(players);
@@ -256,8 +264,10 @@ function gameController (player1Name, player2Name) {
         board.clearBoard(clickBoxes, gameIsOver);
         // activePlayer = '';
 
-        boardController.clearScores(players[0].name, players[1].name);
-        gameController(players[0].name, players[1].name);
+        gameIsReset = true
+        gameController(players[0].name, players[1].name, gameIsReset);
+
+        // boardController.clearScores(players[0].name, players[1].name);
         statusBoxController.resetTurn(players[0].name);
 
         disabledBoard = false;
@@ -282,9 +292,9 @@ startButton.addEventListener('click', (e) => {
     e.preventDefault();
     const player1Name = document.getElementById('first-player').value
     const player2Name = document.getElementById('second-player').value
-    
+    gameIsReset = false;
 
-    gameController(player1Name, player2Name);
+    gameController(player1Name, player2Name, gameIsReset);
 
     // make container dissapear to make way for gameboard
     const promptsContainer = document.querySelector('.prompts-container');
@@ -317,7 +327,6 @@ function switchBoxes(playerBox, firstPrompt) {
 // game Board
 const statusBoxController = (function () {
     const statusBox = document.querySelector('.status-box');
-    statusBox.textContent = 'status box working';
 
     function readTurn (activePlayer) {
         console.log('trun has been read')
@@ -354,10 +363,15 @@ const boardController = (function () {
     let player2Score = 0;
 
     function addPoint (winningPlayer, player1, player2) {
+        console.log(winningPlayer);
+        console.log(player1Score);
+        console.log(player2Score);
         if (player1 === winningPlayer) {
             player1Score++
+            console.log(player1Score)
         } else if (player2 === winningPlayer) {
             player2Score++
+            console.log(player2Score)
         };
         updateScoreBoard(player1, player2);
         return {player1Score, player2Score}
