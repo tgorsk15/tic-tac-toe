@@ -87,14 +87,21 @@ function createBoard () {
     };
 
 
-    function clearBoard () {
+    function clearBoard (clickBoxes, isGameOver) {
         player1Marks.length = 0;
         player2Marks.length = 0;
 
         console.log(player1Marks)
         console.log(player2Marks)
 
-        return {player1Marks, player2Marks}
+        if (isGameOver === false) {
+            clickBoxes.forEach(box => {
+                box.classList.remove('disabled-box')
+                box.textContent = ''
+                box.style.backgroundColor = 'aquamarine'
+            })
+        }
+        return {player1Marks, player2Marks, clickBoxes}
     }
 
     return {changeBoard, checkBoardWin, clearBoard}
@@ -112,6 +119,8 @@ function gameController (player1Name, player2Name) {
 
     let disabledBoard = false;
     console.log(disabledBoard)
+
+    gameIsOver = false;
 
     const players = [
         {
@@ -212,10 +221,11 @@ function gameController (player1Name, player2Name) {
 
 
     const endGame = function (winningPlayer) {
+        gameIsOver = true
         // Here, all arrays should reset
         // a winner should be declared in a new game status box
         boardController.addPoint(winningPlayer, players[0].name, players[1].name);
-        const clearPlayers = board.clearBoard();
+        const clearPlayers = board.clearBoard(clickBoxes, gameIsOver);
         disabledBoard = true;
         activePlayer = ''
         console.log(winningPlayer);
@@ -240,14 +250,18 @@ function gameController (player1Name, player2Name) {
     // button is clicked
     const resetButton = document.querySelector('.reset-game');
     resetButton.addEventListener('click', () => {
-        board.clearBoard();
+        gameIsOver = false
+        board.clearBoard(clickBoxes, gameIsOver);
         activePlayer = '';
+
         boardController.clearScores(players[0].name, players[1].name);
         gameController(players[0].name, players[1].name);
         statusBoxController.resetTurn(players[0].name);
 
+        disabledBoard = false;
         // it is not updating board and turning it back to default look
         // will need to figure out:
+
 
     });
 }
