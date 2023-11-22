@@ -268,6 +268,22 @@ function gameController (player1Name, player2Name) {
         disabledBoard = false;
 
     });
+
+    
+    // this will control the 'play again' process if the Play Again button is clicked
+    const playAgainButton = document.querySelector('.new-game');
+    playAgainButton.addEventListener('click', () => {
+
+        board.clearBoard(clickBoxes, gameIsOver);
+        console.log('round is over, play again clicked');
+
+        statusBoxController.resetTurn(players[0].name);
+
+        activePlayer = players[0];
+        disabledBoard = false;
+    });
+    
+
 }
 
 
