@@ -224,7 +224,8 @@ function gameController (player1Name, player2Name) {
     
         
     };
-        
+
+     
 
 
     const endGame = function (winningPlayer, gameIsOver) {
@@ -234,12 +235,15 @@ function gameController (player1Name, player2Name) {
         boardController.addPoint(winningPlayer, players[0].name, players[1].name);
 
         disabledBoard = true;
-        
+        console.log(disabledBoard);
         
         // a winner should be declared in a new game status box
         statusBoxController.declareWinner(winningPlayer);
 
-        console.log(disabledBoard);
+        // alter playAgainButton:
+        playAgainButton.classList.add('new-game-temporary')
+
+        
         console.log('end reached');
         return {disabledBoard, activePlayer, gameIsOver}
     };
@@ -259,6 +263,8 @@ function gameController (player1Name, player2Name) {
         // this allows the board to be reset:
         board.clearBoard(clickBoxes, gameIsOver);
         console.log('game is over, board reset through button')
+
+        playAgainButton.classList.remove('new-game-temporary')
         
         activePlayer = players[0];
 
@@ -269,20 +275,20 @@ function gameController (player1Name, player2Name) {
 
     });
 
-    
-    // this will control the 'play again' process if the Play Again button is clicked
+// this will control the 'play again' process if the Play Again button is clicked
     const playAgainButton = document.querySelector('.new-game');
     playAgainButton.addEventListener('click', () => {
 
         board.clearBoard(clickBoxes, gameIsOver);
         console.log('round is over, play again clicked');
 
+        playAgainButton.classList.remove('new-game-temporary')
+
         statusBoxController.resetTurn(players[0].name);
 
         activePlayer = players[0];
         disabledBoard = false;
-    });
-    
+    });   
 
 }
 

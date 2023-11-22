@@ -88,7 +88,7 @@ label {
     display: none;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
-    width: 250px;
+    width: 280px;
     height: 180px;
     margin-left: 200px;
 }
@@ -103,6 +103,15 @@ label {
 .new-game,
 .reset-game {
     font-size: 19px;
+}
+
+.new-game {
+    transition: all 0.8s;
+}
+
+.new-game-temporary {
+    transform: scale(1.3);
+    background-color: blue;
 }
 
 .scoreboard {
