@@ -114,7 +114,7 @@ label {
     display: none;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
-    margin-top: 65px;
+    margin-top: 60px;
     width: 320px;
     height: 200px;
     margin-right: 200px;
@@ -187,6 +187,7 @@ label {
     align-items: center;
     overflow: hidden;
     border-radius: 25px;
+    margin-top: 20px;
 }
 
 .box {
@@ -196,29 +197,50 @@ label {
     justify-self: stretch;
     align-self: stretch;
     outline: 3px solid black;
-    background-color: aquamarine;
+    /* background-image: linear-gradient(193deg, lightblue 40%, rgb(156, 77, 156) 60%); */
+    background-color: rgb(177, 245, 222);
     font-size: 120px;
     /* border-radius: 25px; */
+}
+
+.box:hover {
+    /* transition: all 0.3s; */
+    box-shadow: 0px 0px 10px 5px rgb(133, 148, 247) inset;
 }
 
 .game-container {
     display: none;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    gap: 20px;
     min-height: 100%;
     width: 400px;
 }
 
 .status-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 100px;
     text-align: center;
-    border: 2px dashed black;
+    background-color: rgb(248, 239, 227);
+    opacity: 0.8;
+    /* border: 2px dashed black; */
+    border-radius: 25px;
     font-size: 25px;
+    font-weight: bold;
+}
+
+.clicked-box {
+
 }
 
 .disabled-box {
     pointer-events: none;
     color: blue;
+    
 }
 
 

@@ -103,7 +103,7 @@ function createBoard () {
             clickBoxes.forEach(box => {
                 box.classList.remove('disabled-box')
                 box.textContent = ''
-                box.style.backgroundColor = 'aquamarine'
+                // box.style.backgroundColor = 'aquamarine'
             })
         }
         return {player1Marks, player2Marks, clickBoxes}
@@ -188,7 +188,6 @@ function gameController (player1Name, player2Name) {
         } 
             
         const box = event.target;
-        box.style.backgroundColor = 'grey';
         const indexPosition = tempBoard.indexOf(event.target);
         
         console.log(activePlayer.symbol)
