@@ -22,6 +22,9 @@
 function createBoard () {
     const player1Marks = [];
     const player2Marks = [];
+
+    let player1Check = false
+    let player2Check = false
     
     const winningConditions = [
         [0, 1, 2],
@@ -62,10 +65,10 @@ function createBoard () {
 
         if (player === 'X') {
             for (let array of winningConditions) {
-               const player1Check = array.every(item => player1Marks.includes(item));
+               player1Check = array.every(item => player1Marks.includes(item));
                console.log(player1Check)
                if (player1Check) {
-                console.log('ran')
+                    console.log('win check ran')
                     endGameResult = true
                     break
                }
@@ -73,9 +76,10 @@ function createBoard () {
             };
         } else if (player === 'O') {
             for (let array of winningConditions) {
-                const player2Check = array.every(item => player2Marks.includes(item));
+                player2Check = array.every(item => player2Marks.includes(item));
                 console.log(player2Check)
                 if (player2Check) {
+                    console.log('win check ran')
                     endGameResult = true
                     break
                 }
@@ -84,12 +88,15 @@ function createBoard () {
         console.log(endGameResult)
         return endGameResult
         
+
+
     };
 
 
     function clearBoard (clickBoxes, isGameOver) {
         player1Marks.length = 0;
         player2Marks.length = 0;
+
 
         console.log(player1Marks)
         console.log(player2Marks)
@@ -104,6 +111,7 @@ function createBoard () {
         return {player1Marks, player2Marks, clickBoxes}
     }
 
+
     return {changeBoard, checkBoardWin, clearBoard}
    
 };
@@ -112,7 +120,7 @@ function createBoard () {
 
 
 // main game controller function
-function gameController (player1Name, player2Name, reset) {
+function gameController (player1Name, player2Name) {
     const board = createBoard();
     console.log(board);
     console.log(statusBoxController)
@@ -135,11 +143,6 @@ function gameController (player1Name, player2Name, reset) {
         }
     ];
 
-    if (reset === true) {
-        boardController.clearScores(players[0].name, players[1].name)
-    }
-
-    reset = false;
 
     boardController.updateScoreBoard(players[0].name, players[1].name)
     console.log(players);
@@ -188,7 +191,8 @@ function gameController (player1Name, player2Name, reset) {
         const box = event.target;
         box.style.backgroundColor = 'grey';
         const indexPosition = tempBoard.indexOf(event.target);
-    
+        
+        console.log(activePlayer.symbol)
         const moveResult = board.changeBoard(indexPosition, activePlayer.symbol, box)
         const checkForWin = board.checkBoardWin(activePlayer.symbol)
         console.log(checkForWin);
@@ -199,7 +203,7 @@ function gameController (player1Name, player2Name, reset) {
         // the gameboard dissapear and declare a winner, whil also resetting all
         // arrays and game functions
         if (checkForWin) {
-            endGame(activePlayer.name)
+            endGame(activePlayer.name, gameIsOver);
 
             // prevents the rest of code block from running
             // no (switchPlayer occurs):
@@ -220,34 +224,29 @@ function gameController (player1Name, player2Name, reset) {
     
         switchPlayerTurn();
         console.log(activePlayer);
-
-        // ensures that player cannot select box again
     
         
     };
         
 
 
-    const endGame = function (winningPlayer) {
-        gameIsOver = true
+    const endGame = function (winningPlayer, gameIsOver) {
+        gameIsOver === true;
         // Here, all arrays should reset
         // a winner should be declared in a new game status box
+        // const clearPlayers = board.clearBoard(clickBoxes, gameIsOver);
         boardController.addPoint(winningPlayer, players[0].name, players[1].name);
-        const clearPlayers = board.clearBoard(clickBoxes, gameIsOver);
         disabledBoard = true;
-        activePlayer = ''
+        
         console.log(winningPlayer);
         statusBoxController.declareWinner(winningPlayer);
 
         console.log(disabledBoard);
-        console.log(clearPlayers);
         console.log('end reached');
-        return {disabledBoard, activePlayer}
+        return {disabledBoard, activePlayer, gameIsOver}
     };
 
     const drawGame = function () {
-        board.clearBoard();
-        activePlayer = '';
         statusBoxController.declareDraw();
     };
 
@@ -259,15 +258,19 @@ function gameController (player1Name, player2Name, reset) {
     const resetButton = document.querySelector('.reset-game');
     resetButton.addEventListener('click', () => {
         // this allows the board to be reset:
-        gameIsOver = false
-
-        board.clearBoard(clickBoxes, gameIsOver);
-        // activePlayer = '';
-
+        
+        console.log(gameIsOver);
+        // if (gameIsOver === false) {
+            board.clearBoard(clickBoxes, gameIsOver);
+            console.log('game is over, board reset through button')
+        // };
+        
+        activePlayer = players[0];
+        // gameIsOver = true
         gameIsReset = true
-        gameController(players[0].name, players[1].name, gameIsReset);
+        // gameController(players[0].name, players[1].name, gameIsReset);
 
-        // boardController.clearScores(players[0].name, players[1].name);
+        boardController.clearScores(players[0].name, players[1].name);
         statusBoxController.resetTurn(players[0].name);
 
         disabledBoard = false;
@@ -329,23 +332,23 @@ const statusBoxController = (function () {
     const statusBox = document.querySelector('.status-box');
 
     function readTurn (activePlayer) {
-        console.log('trun has been read')
+        // console.log('trun has been read')
         statusBox.textContent = `It is ${activePlayer}'s turn!`;
     };
 
     function declareWinner (winner) {
-        console.log('a player has won');
+        // console.log('a player has won');
         statusBox.textContent = `${winner} has won the game !!!`
     };
 
     function declareDraw () {
-        console.log('both players meet failure')
+        // console.log('both players meet failure')
         statusBox.textContent = `All boxes have been filled, 
         the game has ended in a draw.`
     };
 
     function resetTurn (currentPlayer) {
-        console.log('game has reset to first player turn')
+        // console.log('game has reset to first player turn')
         statusBox.textContent = `It is ${currentPlayer}'s turn!`
     }
 
@@ -363,6 +366,7 @@ const boardController = (function () {
     let player2Score = 0;
 
     function addPoint (winningPlayer, player1, player2) {
+        console.log('point has been added')
         console.log(winningPlayer);
         console.log(player1Score);
         console.log(player2Score);
