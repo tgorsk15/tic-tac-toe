@@ -14,3 +14,5 @@ outer function
 - pacticed using IIFEs to create an inital instance of a function, whose nested functions can be called upon at a later time
 
 - reduced as much as possible the amount of global variables, demonstrating increased code organization and neatness
+
+- got heavy debugging practice, where I had to pinpoint the error in hundreds of lines of code

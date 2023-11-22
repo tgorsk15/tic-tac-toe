@@ -1,30 +1,28 @@
 // tic tac toe code structure:
-// want screen to open up with a dialogue box that you
-// have to click yes on to play
+// Creen will open up with first dialogue box, user has to press "Yes"
 
-// Once 'yes' has been clicked, another box appears (fades in)
-// below the first, prompting the user to put in the team names,
+// Once 'yes' has been clicked, another box appears in place of 
+// the first, prompting the user to put in the team names,
 // if they want
 
 // From here, user presses "Start game", making both dialogue boxes
-// dissapear, being replaced with the actual game board
+// dissapear, being replaced with the actual gameboard and scoreboard
 
 
-// Checking for a win: possibly have to test the array for
-// specific patterns of Xs or Os that would determine
-// if the game has been won
-// ** in a similar vein, once the length of the array is
-// 9, no more items can be added and the game ends in a Draw
-// after one last check for a win
+// Checking for a win: each player is assigned an array, Each time a box
+// is clicked, that player's array gets matchedup with winningConditions,
+// if there's a match, that player wins
+
+// Draw: If all boxes are clicked and neither array contains a winning
+// condition, the game ends in a draw
 
 
 // factory function for the game board
 function createBoard () {
+
     const player1Marks = [];
     const player2Marks = [];
 
-    let player1Check = false
-    let player2Check = false
     
     const winningConditions = [
         [0, 1, 2],
@@ -121,10 +119,9 @@ function createBoard () {
 
 // main game controller function
 function gameController (player1Name, player2Name) {
+    // creates initial existence of the board, and provides a reference:
     const board = createBoard();
     console.log(board);
-    console.log(statusBoxController)
-
 
 
     let disabledBoard = false;
@@ -232,13 +229,14 @@ function gameController (player1Name, player2Name) {
 
     const endGame = function (winningPlayer, gameIsOver) {
         gameIsOver === true;
-        // Here, all arrays should reset
-        // a winner should be declared in a new game status box
-        // const clearPlayers = board.clearBoard(clickBoxes, gameIsOver);
+
+        console.log(winningPlayer);
         boardController.addPoint(winningPlayer, players[0].name, players[1].name);
+
         disabledBoard = true;
         
-        console.log(winningPlayer);
+        
+        // a winner should be declared in a new game status box
         statusBoxController.declareWinner(winningPlayer);
 
         console.log(disabledBoard);
@@ -257,18 +255,12 @@ function gameController (player1Name, player2Name) {
     // button is clicked
     const resetButton = document.querySelector('.reset-game');
     resetButton.addEventListener('click', () => {
+
         // this allows the board to be reset:
-        
-        console.log(gameIsOver);
-        // if (gameIsOver === false) {
-            board.clearBoard(clickBoxes, gameIsOver);
-            console.log('game is over, board reset through button')
-        // };
+        board.clearBoard(clickBoxes, gameIsOver);
+        console.log('game is over, board reset through button')
         
         activePlayer = players[0];
-        // gameIsOver = true
-        gameIsReset = true
-        // gameController(players[0].name, players[1].name, gameIsReset);
 
         boardController.clearScores(players[0].name, players[1].name);
         statusBoxController.resetTurn(players[0].name);
@@ -295,9 +287,8 @@ startButton.addEventListener('click', (e) => {
     e.preventDefault();
     const player1Name = document.getElementById('first-player').value
     const player2Name = document.getElementById('second-player').value
-    gameIsReset = false;
 
-    gameController(player1Name, player2Name, gameIsReset);
+    gameController(player1Name, player2Name);
 
     // make container dissapear to make way for gameboard
     const promptsContainer = document.querySelector('.prompts-container');
@@ -359,8 +350,6 @@ const statusBoxController = (function () {
 // factory function responsible for operating the game Control board
 // in the corner
 const boardController = (function () {
-    const player1Board = document.querySelector('.player1-score')
-    const player2Board = document.querySelector('.player2-score')
 
     let player1Score = 0;
     let player2Score = 0;
@@ -382,9 +371,12 @@ const boardController = (function () {
     }
 
     function updateScoreBoard (player1, player2) {
-        console.log('it ran');
+        const player1Board = document.querySelector('.player1-score')
+        const player2Board = document.querySelector('.player2-score')
+        
         player1Board.textContent = `${player1}'s score: ${player1Score}`;
         player2Board.textContent = `${player2}'s score: ${player2Score}`;
+        console.log('it ran');
     }
 
     function clearScores (player1, player2) {
