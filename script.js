@@ -149,6 +149,8 @@ function gameController (player1Name, player2Name) {
     let activePlayer = players[0];
     console.log(activePlayer)
 
+    statusBoxController.readTurn(activePlayer.name);
+
     function switchPlayerTurn() {
         if (activePlayer === players[0]) {
             activePlayer = players[1];

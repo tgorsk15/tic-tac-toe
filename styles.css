@@ -10,7 +10,10 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: space-evenly;
-
+    background-image: url(floor-tile.png);
+    /* background-repeat: no-repeat; */
+    background-size: contain;
+    /* background-blend-mode: multiply; */
 }
 
 .prompts-container {
@@ -21,6 +24,7 @@ body {
     width: 550px;
     height: 200px;
     border: 2px solid black;
+    background-color: white;
 }
 
 .prompt-game-box {
