@@ -49,12 +49,6 @@ function createBoard () {
         console.log(player2Marks);
     };
 
-    // maybe put in the checkWin function here??
-    // ideas: create two separate arrays that are specific to each player
-    // add whatever indexes these players clicked into their specific
-    // array ... this array goes through a loop every time to check 
-    // if it contains any of the winning conditions (which will be another
-    // array)
 
     function checkBoardWin (player) {
         // here both player arrays will be checked to see if they have
@@ -86,8 +80,6 @@ function createBoard () {
         console.log(endGameResult)
         return endGameResult
         
-
-
     };
 
 
@@ -103,7 +95,6 @@ function createBoard () {
             clickBoxes.forEach(box => {
                 box.classList.remove('disabled-box')
                 box.textContent = ''
-                // box.style.backgroundColor = 'aquamarine'
             })
         }
         return {player1Marks, player2Marks, clickBoxes}
@@ -197,9 +188,9 @@ function gameController (player1Name, player2Name) {
 
         box.classList.add('disabled-box');
         const disabledBoxes = document.querySelectorAll(".disabled-box");
-        // If checkBoardWin comes back as true from checkForWin, I want to make
-        // the gameboard dissapear and declare a winner, whil also resetting all
-        // arrays and game functions
+        // If checkBoardWin comes back as true from checkForWin, the game will
+        // end and reset all the neccessary varibales and functions to be able
+        // to start a new game
         if (checkForWin) {
             endGame(activePlayer.name, gameIsOver);
 
@@ -214,8 +205,6 @@ function gameController (player1Name, player2Name) {
             console.log('tis a draw')
             drawGame()
             return
-            // draw function should possibly have a CSS trigger
-            // that causes the "Play Again" button to enlarge and light up
 
         };
 
@@ -227,7 +216,6 @@ function gameController (player1Name, player2Name) {
     };
 
      
-
 
     const endGame = function (winningPlayer, gameIsOver) {
         gameIsOver === true;
@@ -346,23 +334,19 @@ const statusBoxController = (function () {
     const statusBox = document.querySelector('.status-box');
 
     function readTurn (activePlayer) {
-        // console.log('trun has been read')
         statusBox.textContent = `It is ${activePlayer}'s turn!`;
     };
 
     function declareWinner (winner) {
-        // console.log('a player has won');
         statusBox.textContent = `${winner} has won the game !!!`
     };
 
     function declareDraw () {
-        // console.log('both players meet failure')
         statusBox.textContent = `All boxes have been filled, 
         the game has ended in a draw.`
     };
 
     function resetTurn (currentPlayer) {
-        // console.log('game has reset to first player turn')
         statusBox.textContent = `It is ${currentPlayer}'s turn!`
     }
 

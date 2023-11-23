@@ -4,6 +4,7 @@ of the gameboard.
 */
 html {
     min-height: 100%;
+    font-family: 'Lato', sans-serif;
 }
 
 body {
@@ -11,9 +12,11 @@ body {
     display: flex;
     justify-content: space-evenly;
     background-image: url(floor-tile.png);
-    /* background-repeat: no-repeat; */
     background-size: contain;
-    /* background-blend-mode: multiply; */
+}
+
+button {
+    font-family: 'Lato', sans-serif;
 }
 
 .prompts-container {
@@ -57,8 +60,6 @@ body {
 .player-names-box {
     display: none;
     height: 150px;
-    /* grid-template-columns: 1fr 1fr;
-    grid-template-rows: 3fr 1fr; */
 }
 
 form {
@@ -152,7 +153,6 @@ label {
 .new-game-temporary {
     transform: scale(1.2);
     background-color: rgb(47, 128, 202);
-    /* box-shadow: 0px 0px 10px 5px rgb(210, 176, 210); */
     box-shadow: 0px 0px 10px 5px rgb(133, 148, 247);
     border: none;
     opacity: 1;
@@ -204,7 +204,6 @@ label {
 }
 
 .box:hover {
-    /* transition: all 0.3s; */
     box-shadow: 0px 0px 10px 5px rgb(133, 148, 247) inset;
 }
 
@@ -227,15 +226,11 @@ label {
     text-align: center;
     background-color: rgb(248, 239, 227);
     opacity: 0.8;
-    /* border: 2px dashed black; */
     border-radius: 25px;
     font-size: 25px;
     font-weight: bold;
 }
 
-.clicked-box {
-
-}
 
 .disabled-box {
     pointer-events: none;
